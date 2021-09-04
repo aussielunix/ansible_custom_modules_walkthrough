@@ -1,0 +1,10 @@
+---
+
+- name: testing modules
+  hosts: all
+  gather_facts: False
+  tasks:
+    - name: testing emjay module
+      emjay:
+        mysetting: "hello"
+ 
