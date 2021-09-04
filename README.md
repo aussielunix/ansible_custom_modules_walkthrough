@@ -15,7 +15,7 @@ Before you begin, ensure you have met the following requirements:
 
 * You have a `<Linux/Mac>` working environment
 * You have a recent version of Ansible installed
-* You have a basic grasp of writing Python
+* You have a basic grasp of writing Python and how PYTHONPATH works
 * You have an understanding of the Ansible [module architecture](https://docs.ansible.com/ansible-core/devel/dev_guide/developing_program_flow_modules.html) 
 
 ## Outline
