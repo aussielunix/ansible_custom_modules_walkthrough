@@ -5,6 +5,7 @@
 #
 
 from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.lunix import test_function
 
 def main():
     # define available arguments/parameters a user can pass to the module
@@ -27,6 +28,7 @@ def main():
     # Seed the result dict()
     result = dict(
         changed=False,
+        testmessage="this is a test",
         msg='mysetting: {0}'.format(mysetting)
     )
 
@@ -52,6 +54,7 @@ def main():
         # that would process the inputs etc and then return some values
         # But we just pretent a python function was called and worked and we
         # set changed = True
+        result['testmessage']=test_function()
         result['changed'] = True
     except:
         module.fail_json(msg="Unable to process input variable into string")
