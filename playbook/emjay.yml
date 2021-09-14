@@ -1,15 +1,7 @@
 ---
 
-- name: testing modules
+- name: testing python with delegate_to
   hosts: test
-  gather_facts: True
-  tasks:
-    - name: create user tmp dir
-      file:
-        state: directory
-        path: "{{ ansible_user_dir }}/tmp"
-        mode: 0755
-    - name: testing emjay module
-      emjay:
-        mysetting: "hello"
-      delegate_to: test-02.lunix.lan
+  gather_facts: False
+  roles:
+    - { role: prepare_server }

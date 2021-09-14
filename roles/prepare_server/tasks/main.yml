@@ -1,0 +1,7 @@
+---
+
+- name: run tasks for each OS
+  include_tasks: "{{ item }}"
+  with_first_found:
+    - ubuntu.yml
+    - default.yml

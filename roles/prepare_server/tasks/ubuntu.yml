@@ -1,0 +1,13 @@
+---
+
+- name: testing emjay module
+  emjay:
+    mysetting: "hello"
+  delegate_to: test-01.lunix.lan
+  #delegate_facts: true
+
+- name: testing emjay module
+  emjay:
+    mysetting: "hello"
+  delegate_to: test-02.lunix.lan
+  #delegate_facts: true
