@@ -3,11 +3,23 @@
 # DOCUMENTATION NORMALLY
 # GOES HERE
 #
+import traceback
 
 from ansible.module_utils.basic import AnsibleModule
 from ansible.module_utils.lunix import test_function
+from ansible.module_utils.basic import missing_required_lib
 
 def main():
+    # This is how you would test if a 3rd party Python module is installed
+    #
+    try:
+      import psutil
+    except ImportError:
+      HAS_PSUTIL_LIB = False
+      HAS_PSUTIL_LIB_IMPORT_ERROR = traceback.format_exc()
+    else:
+      HAS_PSUTIL_LIB = True
+
     # define available arguments/parameters a user can pass to the module
     module_args = dict(
         mysetting=dict(required=False,type='str')
@@ -38,22 +50,13 @@ def main():
     if module.check_mode:
         module.exit_json(**result)
 
-    # This is how you would test if a 3rd party Python module is installed
-    #
-    #try:
-    #    # Importing the modules here allows us to catch them not being installed on remote hosts
-    #    # and pass back a failure via ansible instead of a stack trace.
-    #    import pexpect
-    #except ImportError:
-    #    module.fail_json(msg="You must have the pexpect python module installed to use this Ansible module." 
+    if not HAS_PSUTIL_LIB:
+      module.fail_json(
+          msg=missing_required_lib('psutil'))
 
     # The meat of the actual module
     #
     try:
-        # normally a method is called here declared elsewhere
-        # that would process the inputs etc and then return some values
-        # But we just pretent a python function was called and worked and we
-        # set changed = True
         result['testmessage']=test_function()
         result['changed'] = True
     except:
