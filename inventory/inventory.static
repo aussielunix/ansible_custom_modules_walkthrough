@@ -1,6 +1,6 @@
-[test]
-test-01.lunix.lan ansible_python_interpreter=/home/lunix/pvenv/bin/python
-test-02.lunix.lan #ansible_python_interpreter=/home/lunix/pvenv/bin/python
+[test:children]
+test1
+test2
 
 [test1]
 test-01.lunix.lan ansible_python_interpreter=/home/lunix/pvenv/bin/python
